@@ -12,7 +12,7 @@ const loadData = () =>{
 const displayData = (elements) =>{
     const cardContainer = document.getElementById('card-container');
     elements.forEach(element =>{
-        console.log(element);
+        // console.log(element);
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML =`
@@ -30,7 +30,7 @@ const displayData = (elements) =>{
                     <p><span><i class="fa-solid fa-calendar-days"></i></span> ${element.published_in}</p>
                 </div>
                 <div>
-                    <button class="rounded-4 bg-danger-subtle border-0 px-2"><i class="fa-solid fa-arrow-right text-danger"></i></button>
+                    <button onclick="loadCardDetails('${element.id}')" class="rounded-4 bg-danger-subtle border-0 px-2" data-bs-toggle="modal" data-bs-target="#detailsModal"><i class="fa-solid fa-arrow-right text-danger"></i></button>
                 </div>
             </div>
         </div>
@@ -39,5 +39,25 @@ const displayData = (elements) =>{
     cardContainer.appendChild(cardDiv);
     })
 };
+
+const loadCardDetails =(id) =>{
+    const url =`https://openapi.programming-hero.com/api/ai/tool/${id}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayCardDetails(data.data))
+};
+
+const displayCardDetails = (details) => {
+    console.log(details);
+    document.getElementById('card-description').innerText= `${details.description}`
+    document.getElementById('plan1').innerText = `${details.pricing[0].price ? details.pricing[0].price : 'Free of cost'}`
+    document.getElementById('plan1-sub').innerText = `${details.pricing[0].plan}`
+
+    document.getElementById('plan2').innerText = `${details.pricing[1].price}`
+    document.getElementById('plan2-sub').innerText = `${details.pricing[1].plan}`
+
+    document.getElementById('plan3').innerText = `${details.pricing[2].price}`
+    document.getElementById('plan3-sub').innerText = `${details.pricing[2].plan}`
+}
 
 loadData();

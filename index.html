@@ -9,7 +9,7 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/f2351239bc.js" crossorigin="anonymous"></script>
     <style>
-        #img{
+        #img {
             border-radius: 25px;
         }
     </style>
@@ -21,9 +21,76 @@
         <button id="sort-btn" class="btn btn-danger mt-2">Sort By Date</button>
     </header>
     <main>
+        <section>
+
+            <!-- Modal -->
+            <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                            <div class="d-flex justify-content-end mb-4"><button type="button" class="btn-close"
+                                    data-bs-dismiss="modal" aria-label="Close"></button></div>
+                            <div class="row">
+                                <div class="col-sm-6 mb-3">
+                                    <div class="card bg-danger-subtle">
+                                        <div class="card-body">
+                                            <h5 id="card-description" class="card-title">Special title treatment</h5>
+                                            <div class="d-flex justify-content-between mt-4 gap-2">
+                                                <div class="border-1 p-2 bg-white rounded-2">
+                                                    <p id="plan1"></p>
+                                                    <p id="plan1-sub"></p>
+                                                </div>
+                                                <div class="border-1 p-2 bg-white rounded-2">
+                                                    <p id="plan2"></p>
+                                                    <p id="plan2-sub"></p>
+                                                </div>
+                                                <div class="border-1 p-2 bg-white rounded-2">
+                                                    <p id="plan3"></p>
+                                                    <p id="plan3-sub"></p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between mt-2">
+                                                <div>
+                                                    <h6 class="card-title">Features</h6>
+                                                    <ul>
+                                                        <li>ggdsg</li>
+                                                        <li>ggdsg</li>
+                                                        <li>ggdsg</li>
+                                                    </ul>
+                                                </div>
+                                                <div>
+                                                    <h6 class="card-title">Integrations</h6>
+                                                    <ul>
+                                                        <li>ggdsg</li>
+                                                        <li>ggdsg</li>
+                                                        <li>ggdsg</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img src="" alt="">
+                                            <h5 class="card-title">Special title treatment</h5>
+                                            <p class="card-text">With supporting text below as a natural lead-in to
+                                                additional content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="mt-4">
             <div id="card-container" class="row row-cols-1 row-cols-md-3 g-4">
-                
+
             </div>
         </section>
 
