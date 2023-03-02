@@ -2,6 +2,16 @@ const loadData = () =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
     .then(res => res.json())
+    .then(data => displayData(data.data.tools.slice(0,6)))
+
+    .catch(error =>{
+        console.log(error);
+    })
+};
+const loadData2 = () =>{
+    const url = `https://openapi.programming-hero.com/api/ai/tools`
+    fetch(url)
+    .then(res => res.json())
     .then(data => displayData(data.data.tools))
 
     .catch(error =>{
@@ -11,6 +21,7 @@ const loadData = () =>{
 
 const displayData = (elements) =>{
     const cardContainer = document.getElementById('card-container');
+    cardContainer.innerHTML = "";
     elements.forEach(element =>{
         // console.log(element);
         const cardDiv = document.createElement('div');
@@ -38,6 +49,8 @@ const displayData = (elements) =>{
         `
     cardContainer.appendChild(cardDiv);
     })
+    toggleSpinner(false);
+    
 };
 
 const loadCardDetails =(id) =>{
@@ -95,5 +108,21 @@ const displayCardDetails = (details) => {
     `
 };
 
+// toggler
+const toggleSpinner = (isLoading) =>{
+    const loaderSection = document.getElementById('loader');
+    if(isLoading){
+        loaderSection.classList.remove('d-none');
+    }
+    else{
+        loaderSection.classList.add('d-none');
+    }
+};
+
+const showAll = () =>{
+    toggleSpinner(true);
+    document.getElementById('show-all').classList.add('d-none');
+    loadData2();
+}
 
 loadData();

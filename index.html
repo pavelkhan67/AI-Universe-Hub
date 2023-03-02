@@ -21,9 +21,17 @@
         <button id="sort-btn" class="btn btn-danger mt-2">Sort By Date</button>
     </header>
     <main>
+        <!-- loader part -->
+        <section id="loader" class="d-none">
+            <div class="d-flex justify-content-center align-items-center mt-5">
+                <div class="spinner-border text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </section>
+        
         <section>
-
-            <!-- Modal -->
+            <!-- Modal part-->
             <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -70,11 +78,17 @@
                 </div>
             </div>
         </section>
+        <!-- Card Container Part -->
         <section class="mt-4">
             <div id="card-container" class="row row-cols-1 row-cols-md-3 g-4">
 
             </div>
+            <!-- Show all data -->
+            <div id="show-all" class="text-center">
+                <button onclick="showAll()" class="mt-4 btn btn-primary">Show All</button>
+            </div>
         </section>
+        
 
     </main>
 
