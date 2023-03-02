@@ -92,9 +92,9 @@ const displayCardDetails = (details) => {
         div2.innerHTML=`
         <h6 class="card-title">Integrations</h6>
         <ul>
-            <li>${details.integrations[0]}</li>
-            <li>${details.integrations[1]}</li>
-            <li>${details.integrations[2]}</li>
+            <li>${details.integrations !== null ? details.integrations[0] : "No data Found"}</li>
+            <li>${details.integrations !== null ? details.integrations[1] : "No data Found"}</li>
+            <li>${details.integrations !== null ? details.integrations[2] : "No data Found"}</li>
         </ul>
         
         `
@@ -102,7 +102,7 @@ const displayCardDetails = (details) => {
         
     const cardDetails2 = document.getElementById('card-description2');
     cardDetails2.innerHTML = `
-    <img class="img-fluid rounded-3" src="${details.image_link[0]}" alt="">
+    <img class="img-fluid rounded-3 mb-4" src="${details.image_link[0]}" alt="">
         <h5 class="card-title">${details.input_output_examples[0].input}</h5>
         <p class="card-text">${details.input_output_examples[0].output}</p>
     `

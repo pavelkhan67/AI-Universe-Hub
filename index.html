@@ -29,7 +29,7 @@
                 </div>
             </div>
         </section>
-        
+
         <section>
             <!-- Modal part-->
             <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel"
@@ -38,29 +38,32 @@
                     <div class="modal-content">
 
                         <div class="modal-body">
-                            <div class="d-flex justify-content-end mb-4"><button type="button" class="btn-close"
-                                    data-bs-dismiss="modal" aria-label="Close"></button></div>
+                            <div class="d-flex justify-content-end mb-4">
+                                <button type="button" class="btn-close bg-danger"
+                                    data-bs-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-6 mb-3">
                                     <div class="card bg-danger-subtle">
                                         <div class="card-body">
                                             <h5 id="card-description" class="card-title"></h5>
                                             <div class="d-flex justify-content-between mt-4 gap-2">
-                                                <div class="border-1 p-2 bg-white rounded-2">
+                                                <div class="border-1 p-2 bg-white rounded-2 text-success fw-bold">
                                                     <p id="plan1"></p>
                                                     <p id="plan1-sub"></p>
                                                 </div>
-                                                <div class="border-1 p-2 bg-white rounded-2">
+                                                <div class="border-1 p-2 bg-white rounded-2 text-warning fw-bold">
                                                     <p id="plan2"></p>
                                                     <p id="plan2-sub"></p>
                                                 </div>
-                                                <div class="border-1 p-2 bg-white rounded-2">
+                                                <div class="border-1 p-2 bg-white rounded-2 text-danger fw-bold">
                                                     <p id="plan3"></p>
                                                     <p id="plan3-sub"></p>
                                                 </div>
                                             </div>
                                             <div id="card-info" class="d-flex justify-content-between mt-2">
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +71,7 @@
                                 <div class="col-sm-6">
                                     <div class="card">
                                         <div id="card-description2" class="card-body">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -83,12 +86,22 @@
             <div id="card-container" class="row row-cols-1 row-cols-md-3 g-4">
 
             </div>
+
+            <!-- loader part
+            <section id="loader" class="d-none">
+                <div class="d-flex justify-content-center align-items-center mt-5">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </section> -->
+
             <!-- Show all data -->
-            <div id="show-all" class="text-center">
+            <div id="show-all" class="text-end">
                 <button onclick="showAll()" class="mt-4 btn btn-primary">Show All</button>
             </div>
         </section>
-        
+
 
     </main>
 
