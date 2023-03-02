@@ -50,7 +50,7 @@ const loadCardDetails =(id) =>{
 const displayCardDetails = (details) => {
     console.log(details);
     document.getElementById('card-description').innerText= `${details.description}`
-    document.getElementById('plan1').innerText = `${details.pricing[0].price ? details.pricing[0].price : 'Free of cost'}`
+    document.getElementById('plan1').innerText = `${details.pricing[0].price ===0 ? "No cost" : details.pricing[0].price}`
     document.getElementById('plan1-sub').innerText = `${details.pricing[0].plan}`
 
     document.getElementById('plan2').innerText = `${details.pricing[1].price}`
@@ -58,6 +58,35 @@ const displayCardDetails = (details) => {
 
     document.getElementById('plan3').innerText = `${details.pricing[2].price}`
     document.getElementById('plan3-sub').innerText = `${details.pricing[2].plan}`
+
+    const cardInfo = document.getElementById('card-info');
+    cardInfo.innerHTML ="";
+
+    const div1 = document.createElement('div');
+    div1.innerHTML = `
+    <h6 class="card-title">Features</h6>
+        <ul>
+            <li>${details.features[1].feature_name}</li>
+            <li>${details.features[2].feature_name}</li>
+            <li>${details.features[3].feature_name}</li>
+        </ul>
+    `
+    cardInfo.appendChild(div1);
+
+    const div2 = document.createElement('div');
+    console.log(details.integrations);
+        div2.innerHTML=`
+        <h6 class="card-title">Integrations</h6>
+        <ul>
+            <li>${details.integrations[0]}</li>
+            <li>${details.integrations[1]}</li>
+            <li>${details.integrations[2]}</li>
+        </ul>
+        
+        `
+        cardInfo.appendChild(div2)    
 }
 
 loadData();
+
+data.features[1].feature_name
