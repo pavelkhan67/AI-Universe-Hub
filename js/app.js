@@ -74,6 +74,7 @@ const displayCardDetails = (details) => {
     cardInfo.appendChild(div1);
 
     const div2 = document.createElement('div');
+    
     console.log(details.integrations);
         div2.innerHTML=`
         <h6 class="card-title">Integrations</h6>
@@ -84,9 +85,15 @@ const displayCardDetails = (details) => {
         </ul>
         
         `
-        cardInfo.appendChild(div2)    
-}
+        cardInfo.appendChild(div2)  
+        
+    const cardDetails2 = document.getElementById('card-description2');
+    cardDetails2.innerHTML = `
+    <img class="img-fluid rounded-3" src="${details.image_link[0]}" alt="">
+        <h5 class="card-title">${details.input_output_examples[0].input}</h5>
+        <p class="card-text">${details.input_output_examples[0].output}</p>
+    `
+};
+
 
 loadData();
-
-data.features[1].feature_name
