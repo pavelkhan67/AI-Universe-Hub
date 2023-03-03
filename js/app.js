@@ -109,26 +109,58 @@ const displayCardDetails = (details) => {
     }
       
     else{
-        div2.innerHTML=`
+        if(details.integrations.length <= 1){
+            div2.innerHTML=`
         <h6 class="card-title">Integrations</h6>
         <ul>
-            <li>${details.integrations == null ? "No data Found" : details.integrations[0]}</li>
-            <li>${details.integrations == null ? "No data Found" : details.integrations[1]}</li>
-            <li>${details.integrations == null ? "No data Found" : details.integrations[2]}</li>
+            <li>${details.integrations[0]}</li>
+            
         </ul>
         `
         cardInfo.appendChild(div2)
+        }
+        else if (details.integrations.length == 3){
+            div2.innerHTML=`
+        <h6 class="card-title">Integrations</h6>
+        <ul>
+            <li>${details.integrations[0]}</li>
+            <li>${details.integrations[1]}</li>
+            <li>${details.integrations[2]}</li>
+        </ul>
+        `
+        cardInfo.appendChild(div2)
+        }
+        else{
+            div2.innerHTML=`
+        <h6 class="card-title">Integrations</h6>
+        <ul>
+            <li>${details.integrations[0]}</li>
+            <li>${details.integrations[1]}</li>
+            <li>${details.integrations[2]}</li>
+            <li>${details.integrations[3]}</li>
+        </ul>
+        `
+        cardInfo.appendChild(div2)
+        }
     }   
         
     const cardDetails2 = document.getElementById('card-description2');
-    if(details.input_output_examples == null) {
-        console.log("gafas");
-    }
-    cardDetails2.innerHTML = `
-    <img class="img-fluid rounded-3 mb-4" src="${details.image_link[0]}" alt="">
+
+    if(details.accuracy.score == null){
+        cardDetails2.innerHTML = `
+    <img id="modal-img" class="rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
         <h5 class="card-title">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
         <p class="card-text">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
     `
+    }
+    else{
+        cardDetails2.innerHTML = `
+    <img id="modal-img" class="rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
+        <p id='accuracy' class="bg-danger-subtle text-center rounded-3 position-absolute">${details.accuracy.score* 100}% accuracy</p>
+        <h5 class="card-title">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
+        <p class="card-text">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
+    `
+    }
 };
 
 // toggler

@@ -12,6 +12,29 @@
         #img {
             border-radius: 25px;
         }
+
+        #accuracy {
+            width: 130px;
+            margin-top: -56%;
+            margin-left: 55%;
+        }
+
+        #modal-img {
+            height: 190px;
+            width: 337px;
+        }
+
+        @media screen and (max-width: 800px) {
+            #accuracy {
+                width: 120px;
+                margin-top: -58%;
+                margin-left: 53%;
+            }
+
+            #modal-img {
+                width: 315px;
+            }
+        }
     </style>
 </head>
 
@@ -21,15 +44,6 @@
         <button id="sort-btn" class="btn btn-danger mt-2">Sort By Date</button>
     </header>
     <main>
-        <!-- loader part -->
-        <section id="loader" class="d-none">
-            <div class="d-flex justify-content-center align-items-center mt-5">
-                <div class="spinner-border text-success" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        </section>
-
         <section>
             <!-- Modal part-->
             <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel"
@@ -39,8 +53,8 @@
 
                         <div class="modal-body">
                             <div class="d-flex justify-content-end mb-4">
-                                <button type="button" class="btn-close bg-danger"
-                                    data-bs-dismiss="modal" aria-label="Close">
+                                <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal"
+                                    aria-label="Close">
                                 </button>
                             </div>
                             <div class="row">
@@ -87,18 +101,18 @@
 
             </div>
 
-            <!-- loader part
+            <!-- loader part -->
             <section id="loader" class="d-none">
-                <div class="d-flex justify-content-center align-items-center mt-5">
+                <div class=" d-flex justify-content-center align-items-center mt-5">
                     <div class="spinner-border text-success" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
-            </section> -->
+            </section>
 
             <!-- Show all data -->
-            <div id="show-all" class="text-end">
-                <button onclick="showAll()" class="mt-4 btn btn-primary">Show All</button>
+            <div id="show-all" class="text-center">
+                <button onclick="showAll()" class="mt-4 btn btn-danger">See More</button>
             </div>
         </section>
 
