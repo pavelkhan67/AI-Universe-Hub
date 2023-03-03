@@ -23,7 +23,7 @@ const displayData = (elements) =>{
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = "";
     elements.forEach(element =>{
-        // console.log(element);
+        // console.log(element.features);
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML =`
@@ -33,7 +33,7 @@ const displayData = (elements) =>{
             <h5 class="card-title">Features</h5>
             <p>1. ${element.features[0]}</p>
             <p>2. ${element.features[1]}</p>
-            <p>3. ${element.features[2]}</p>
+            <p>3. ${element.features[2] ? element.features[2] : "No data Found"}</p>
             <hr>
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -63,14 +63,25 @@ const loadCardDetails =(id) =>{
 const displayCardDetails = (details) => {
     console.log(details);
     document.getElementById('card-description').innerText= `${details.description}`
-    document.getElementById('plan1').innerText = `${details.pricing[0].price ===0 ? "No cost" : details.pricing[0].price}`
-    document.getElementById('plan1-sub').innerText = `${details.pricing[0].plan}`
-
-    document.getElementById('plan2').innerText = `${details.pricing[1].price}`
-    document.getElementById('plan2-sub').innerText = `${details.pricing[1].plan}`
-
-    document.getElementById('plan3').innerText = `${details.pricing[2].price}`
-    document.getElementById('plan3-sub').innerText = `${details.pricing[2].plan}`
+    if(details.pricing == null){
+        document.getElementById('plan1').innerText = 'No data found';
+        document.getElementById('plan1-sub').innerText = '';
+        document.getElementById('plan2').innerText = 'No data found';
+        document.getElementById('plan2-sub').innerText = '';
+        document.getElementById('plan3').innerText = 'No data found';
+        document.getElementById('plan3-sub').innerText = '';
+    }
+    else{
+        document.getElementById('plan1').innerText = `${details.pricing[0].price == false ? "Free of Cost /" : details.pricing[0].price }`
+        document.getElementById('plan1-sub').innerText = `${details.pricing[0].plan}`
+    
+        document.getElementById('plan2').innerText = `${details.pricing[1].price == false ? "Free of Cost /" : details.pricing[1].price }`
+        document.getElementById('plan2-sub').innerText = `${details.pricing[1].plan}`
+    
+        document.getElementById('plan3').innerText = `${details.pricing[2].price == false ? "Free of Cost /" : details.pricing[2].price }`
+        document.getElementById('plan3-sub').innerText = `${details.pricing[2].plan}`
+    }
+    
 
     const cardInfo = document.getElementById('card-info');
     cardInfo.innerHTML ="";
@@ -87,24 +98,36 @@ const displayCardDetails = (details) => {
     cardInfo.appendChild(div1);
 
     const div2 = document.createElement('div');
-    
-    console.log(details.integrations);
+    if(details.integrations == null){
         div2.innerHTML=`
         <h6 class="card-title">Integrations</h6>
         <ul>
-            <li>${details.integrations !== null ? details.integrations[0] : "No data Found"}</li>
-            <li>${details.integrations !== null ? details.integrations[1] : "No data Found"}</li>
-            <li>${details.integrations !== null ? details.integrations[2] : "No data Found"}</li>
+            <li>${details.integrations == null ? "No data Found" : details.integrations[0]}</li>
         </ul>
-        
         `
-        cardInfo.appendChild(div2)  
+        cardInfo.appendChild(div2);
+    }
+      
+    else{
+        div2.innerHTML=`
+        <h6 class="card-title">Integrations</h6>
+        <ul>
+            <li>${details.integrations == null ? "No data Found" : details.integrations[0]}</li>
+            <li>${details.integrations == null ? "No data Found" : details.integrations[1]}</li>
+            <li>${details.integrations == null ? "No data Found" : details.integrations[2]}</li>
+        </ul>
+        `
+        cardInfo.appendChild(div2)
+    }   
         
     const cardDetails2 = document.getElementById('card-description2');
+    if(details.input_output_examples == null) {
+        console.log("gafas");
+    }
     cardDetails2.innerHTML = `
     <img class="img-fluid rounded-3 mb-4" src="${details.image_link[0]}" alt="">
-        <h5 class="card-title">${details.input_output_examples[0].input}</h5>
-        <p class="card-text">${details.input_output_examples[0].output}</p>
+        <h5 class="card-title">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
+        <p class="card-text">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
     `
 };
 
