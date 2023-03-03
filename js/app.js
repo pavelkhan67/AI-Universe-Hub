@@ -1,3 +1,4 @@
+// Show only 6 data at first
 const loadData = () =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
@@ -8,6 +9,8 @@ const loadData = () =>{
         console.log(error);
     })
 };
+
+// Show all data part
 const loadData2 = () =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
@@ -19,6 +22,7 @@ const loadData2 = () =>{
     })
 };
 
+// display data in main UI
 const displayData = (elements) =>{
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = "";
@@ -31,9 +35,10 @@ const displayData = (elements) =>{
         <img id="img" src="${element.image}" class="card-img-top p-3 h-50 " alt="...">
         <div class="card-body">
             <h5 class="card-title">Features</h5>
-            <p>1. ${element.features[0]}</p>
-            <p>2. ${element.features[1]}</p>
-            <p>3. ${element.features[2] ? element.features[2] : "No data Found"}</p>
+            <p>${element.features[0] ? + "1"+ '. ' + element.features[0] : ""}</p>
+            <p>${element.features[1] ? + "2"+ '. ' + element.features[1] : ""}</p>
+            <p>${element.features[2] ? + "3"+ '. ' + element.features[2] : ""}</p>
+            <p>${element.features[3] ? + "4"+ '. ' + element.features[3] : ""}</p>
             <hr>
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -53,6 +58,7 @@ const displayData = (elements) =>{
     
 };
 
+// Load data dynamically using id 
 const loadCardDetails =(id) =>{
     const url =`https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(url)
@@ -60,8 +66,8 @@ const loadCardDetails =(id) =>{
     .then(data => displayCardDetails(data.data))
 };
 
+// display data in modal part
 const displayCardDetails = (details) => {
-    console.log(details);
     document.getElementById('card-description').innerText= `${details.description}`
     if(details.pricing == null){
         document.getElementById('plan1').innerText = 'No data found';
@@ -82,9 +88,10 @@ const displayCardDetails = (details) => {
         document.getElementById('plan3-sub').innerText = `${details.pricing[2].plan}`
     }
     
-
+    // Features & Integrations display
     const cardInfo = document.getElementById('card-info');
     cardInfo.innerHTML ="";
+    console.log(details.features);
 
     const div1 = document.createElement('div');
     div1.innerHTML = `
@@ -93,6 +100,8 @@ const displayCardDetails = (details) => {
             <li>${details.features[1].feature_name}</li>
             <li>${details.features[2].feature_name}</li>
             <li>${details.features[3].feature_name}</li>
+            <li>${details.features[4] == undefined ? "":details.features[4].feature_name}</li>
+             
         </ul>
     `
     cardInfo.appendChild(div1);
@@ -148,15 +157,15 @@ const displayCardDetails = (details) => {
 
     if(details.accuracy.score == null){
         cardDetails2.innerHTML = `
-    <img id="modal-img" class="rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
+    <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
         <h5 class="card-title">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
         <p class="card-text">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
     `
     }
     else{
         cardDetails2.innerHTML = `
-    <img id="modal-img" class="rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
-        <p id='accuracy' class="bg-danger-subtle text-center rounded-3 position-absolute">${details.accuracy.score* 100}% accuracy</p>
+    <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
+        <p id='accuracy' class="bg-danger-subtle text-center rounded-3 position-absolute mt-4 me-4 px-3 top-0 end-0">${details.accuracy.score* 100}% accuracy</p>
         <h5 class="card-title">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
         <p class="card-text">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
     `
