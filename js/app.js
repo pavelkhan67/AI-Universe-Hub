@@ -158,16 +158,16 @@ const displayCardDetails = (details) => {
     if(details.accuracy.score == null){
         cardDetails2.innerHTML = `
     <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
-        <h5 class="card-title">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
-        <p class="card-text">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
+        <h5 class="card-title text-center">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
+        <p class="card-text text-center">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
     `
     }
     else{
         cardDetails2.innerHTML = `
     <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
         <p id='accuracy' class="bg-danger-subtle text-center rounded-3 position-absolute mt-4 me-4 px-3 top-0 end-0">${details.accuracy.score* 100}% accuracy</p>
-        <h5 class="card-title">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
-        <p class="card-text">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
+        <h5 class="card-title text-center">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
+        <p class="card-text text-center">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
     `
     }
 };
@@ -191,12 +191,14 @@ const showAll = () =>{
 };
 
 // Sort all data by Date Ascending order
-const sortData = () =>{
+document.getElementById('sort-btn').addEventListener('click',function(){
+    document.getElementById('sort-btn').style.backgroundColor='green';
     toggleSpinner(true);
     fetch(`https://openapi.programming-hero.com/api/ai/tools`)
     .then(res => res.json())
     .then(data => sortDataShow(data.data.tools))
-};
+}) 
+
 const sortDataShow = elements => {
     function byDate(a,b) {
         return new Date(a.published_in).valueOf() - new Date(b.published_in).valueOf();
