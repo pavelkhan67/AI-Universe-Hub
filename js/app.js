@@ -31,7 +31,7 @@ const displayData = (elements) =>{
         cardDiv.classList.add('col');
         cardDiv.innerHTML =`
         <div class="card h-100">
-        <img id="img" src="${element.image}" class="card-img-top p-3 h-50 " alt="...">
+        <img id="img" src="${element.image}" class="card-img-top p-3 h-50" alt="...">
         <div class="card-body">
             <h5 class="card-title">Features</h5>
             <p>${element.features[0] ? + "1"+ '. ' + element.features[0] : ""}</p>
@@ -100,7 +100,6 @@ const displayCardDetails = (details) => {
             <li>${details.features[2].feature_name}</li>
             <li>${details.features[3].feature_name}</li>
             <p class="m-0"> ${details.features[4] == undefined ? "" : `<li>${details.features[4].feature_name}</li>`}</p>
-             
         </ul>
     `
     cardInfo.appendChild(div1);
@@ -117,39 +116,17 @@ const displayCardDetails = (details) => {
     }
       
     else{
-        if(details.integrations.length <= 1){
-            div2.innerHTML=`
+        div2.innerHTML=`
         <h6 class="card-title">Integrations</h6>
         <ul>
             <li>${details.integrations[0]}</li>
-            
+            <p class="m-0">${details.integrations[1] == undefined ? "" : `<li>${details.integrations[1]}</li>`}</p>
+            <p>${details.integrations[2] == undefined ? "" : `<li>${details.integrations[2]}</li>`}</p>
+            <p> ${details.integrations[3] == undefined ? "" : `<li>${details.integrations[3]}</li>`}</p>
         </ul>
         `
-        cardInfo.appendChild(div2)
-        }
-        else if (details.integrations.length == 3){
-            div2.innerHTML=`
-        <h6 class="card-title">Integrations</h6>
-        <ul>
-            <li>${details.integrations[0]}</li>
-            <li>${details.integrations[1]}</li>
-            <li>${details.integrations[2]}</li>
-        </ul>
-        `
-        cardInfo.appendChild(div2)
-        }
-        else{
-            div2.innerHTML=`
-        <h6 class="card-title">Integrations</h6>
-        <ul>
-            <li>${details.integrations[0]}</li>
-            <li>${details.integrations[1]}</li>
-            <li>${details.integrations[2]}</li>
-            <li>${details.integrations[3]}</li>
-        </ul>
-        `
-        cardInfo.appendChild(div2)
-        }
+        cardInfo.appendChild(div2);
+        
     }   
     
     // Modal 2nd div info
