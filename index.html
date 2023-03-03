@@ -18,7 +18,7 @@
 <body class="container my-4">
     <header class="text-center">
         <h2>AI Universe Hub</h2>
-        <button id="sort-btn" class="btn btn-danger mt-2 ">Sort By Date</button>
+        <button onclick="sortData()" class="btn btn-danger mt-2 ">Sort By Date</button>
     </header>
     <main>
         <section>
@@ -38,23 +38,22 @@
                                 <div class="col-sm-6 mb-3">
                                     <div class="card bg-danger-subtle">
                                         <div class="card-body">
-                                            <h5 id="card-description" class="card-title"></h5>
+                                            <h6 id="card-description" class="card-title"></h6>
                                             <div class="d-flex justify-content-between mt-4 gap-2">
-                                                <div class="border-1 p-2 bg-white rounded-2 text-success fw-bold">
-                                                    <p id="plan1"></p>
-                                                    <p id="plan1-sub"></p>
+                                                <div class="border-1 p-2 bg-white rounded-2 text-success fw-semibold">
+                                                    <p class="m-0" id="plan1"></p>
+                                                    <p class="m-0" id="plan1-sub"></p>
                                                 </div>
-                                                <div class="border-1 p-2 bg-white rounded-2 text-warning fw-bold">
-                                                    <p id="plan2"></p>
-                                                    <p id="plan2-sub"></p>
+                                                <div class="border-1 p-2 bg-white rounded-2 text-warning fw-semibold">
+                                                    <p class="m-0" id="plan2"></p>
+                                                    <p class="m-0" id="plan2-sub"></p>
                                                 </div>
-                                                <div class="border-1 p-2 bg-white rounded-2 text-danger fw-bold">
-                                                    <p id="plan3"></p>
-                                                    <p id="plan3-sub"></p>
+                                                <div class="border-1 p-2 bg-white rounded-2 text-danger fw-semibold">
+                                                    <p class="m-0" id="plan3"></p>
+                                                    <p class="m-0" id="plan3-sub"></p>
                                                 </div>
                                             </div>
                                             <div id="card-info" class="d-flex justify-content-between mt-3">
-
                                             </div>
                                         </div>
                                     </div>

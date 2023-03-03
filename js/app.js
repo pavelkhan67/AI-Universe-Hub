@@ -27,7 +27,6 @@ const displayData = (elements) =>{
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = "";
     elements.forEach(element =>{
-        // console.log(element.features);
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML =`
@@ -78,10 +77,10 @@ const displayCardDetails = (details) => {
         document.getElementById('plan3-sub').innerText = '';
     }
     else{
-        document.getElementById('plan1').innerText = `${details.pricing[0].price == false ? "Free of Cost /" : details.pricing[0].price }`
+        document.getElementById('plan1').innerText = `${details.pricing[0].price == false || details.pricing[0].price == 'No cost' ? "Free of Cost /" : details.pricing[0].price }`
         document.getElementById('plan1-sub').innerText = `${details.pricing[0].plan}`
     
-        document.getElementById('plan2').innerText = `${details.pricing[1].price == false ? "Free of Cost /" : details.pricing[1].price }`
+        document.getElementById('plan2').innerText = `${details.pricing[1].price == false || details.pricing[1].price == 'No cost' ? "Free of Cost /" : details.pricing[1].price }`
         document.getElementById('plan2-sub').innerText = `${details.pricing[1].plan}`
     
         document.getElementById('plan3').innerText = `${details.pricing[2].price == false ? "Free of Cost /" : details.pricing[2].price }`
@@ -91,7 +90,7 @@ const displayCardDetails = (details) => {
     // Features & Integrations display
     const cardInfo = document.getElementById('card-info');
     cardInfo.innerHTML ="";
-    console.log(details.features);
+    // console.log(details.features);
 
     const div1 = document.createElement('div');
     div1.innerHTML = `
@@ -100,7 +99,7 @@ const displayCardDetails = (details) => {
             <li>${details.features[1].feature_name}</li>
             <li>${details.features[2].feature_name}</li>
             <li>${details.features[3].feature_name}</li>
-            <li>${details.features[4] == undefined ? "":details.features[4].feature_name}</li>
+            <p class="m-0"> ${details.features[4] == undefined ? "" : `<li>${details.features[4].feature_name}</li>`}</p>
              
         </ul>
     `
@@ -152,9 +151,10 @@ const displayCardDetails = (details) => {
         cardInfo.appendChild(div2)
         }
     }   
-        
+    
+    // Modal 2nd div info
+    // Images, question answer part
     const cardDetails2 = document.getElementById('card-description2');
-
     if(details.accuracy.score == null){
         cardDetails2.innerHTML = `
     <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
@@ -183,10 +183,27 @@ const toggleSpinner = (isLoading) =>{
     }
 };
 
+// Show all data part
 const showAll = () =>{
     toggleSpinner(true);
     document.getElementById('show-all').classList.add('d-none');
     loadData2();
-}
+};
+
+// Sort all data by Date Ascending order
+const sortData = () =>{
+    toggleSpinner(true);
+    fetch(`https://openapi.programming-hero.com/api/ai/tools`)
+    .then(res => res.json())
+    .then(data => sortDataShow(data.data.tools))
+};
+const sortDataShow = elements => {
+    function byDate(a,b) {
+        return new Date(a.published_in).valueOf() - new Date(b.published_in).valueOf();
+    }
+    const date = (elements.sort(byDate));
+    displayData(date);
+    document.getElementById('show-all').classList.add('d-none');
+};
 
 loadData();
