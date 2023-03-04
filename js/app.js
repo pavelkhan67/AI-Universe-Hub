@@ -79,10 +79,10 @@ const displayCardDetails = (details) => {
         document.getElementById('plan3-sub').innerText = '/ Enterprise';
     }
     else{
-        document.getElementById('plan1').innerText = `${details.pricing[0].price == false || details.pricing[0].price == 'No cost' ? "Free of Cost /" : details.pricing[0].price }`
+        document.getElementById('plan1').innerText = `${details.pricing[0].price == false ? "Free of Cost /" : details.pricing[0].price }`
         document.getElementById('plan1-sub').innerText = `${details.pricing[0].plan}`
     
-        document.getElementById('plan2').innerText = `${details.pricing[1].price == false || details.pricing[1].price == 'No cost' ? "Free of Cost /" : details.pricing[1].price }`
+        document.getElementById('plan2').innerText = `${details.pricing[1].price == false ? "Free of Cost /" : details.pricing[1].price }`
         document.getElementById('plan2-sub').innerText = `${details.pricing[1].plan}`
     
         document.getElementById('plan3').innerText = `${details.pricing[2].price == false ? "Free of Cost /" : details.pricing[2].price }`
