@@ -10,7 +10,7 @@ const loadData = () =>{
     })
 };
 
-// Show all data part
+// Show all data by clicking See More button part
 const loadData2 = () =>{
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
@@ -67,7 +67,9 @@ const loadCardDetails =(id) =>{
 
 // display data in modal part
 const displayCardDetails = (details) => {
+    // modal 1st card
     document.getElementById('card-description').innerText= `${details.description}`
+    // price and plan part
     if(details.pricing == null){
         document.getElementById('plan1').innerText = 'No data found';
         document.getElementById('plan1-sub').innerText = '';
@@ -87,13 +89,13 @@ const displayCardDetails = (details) => {
         document.getElementById('plan3-sub').innerText = `${details.pricing[2].plan}`
     }
     
-    // Features & Integrations display
-    const cardInfo = document.getElementById('card-info');
-    cardInfo.innerHTML ="";
+    // Features & Integrations part display
+    const modalCard1 = document.getElementById('modal-card1');
+    modalCard1.innerHTML ="";
     // console.log(details.features);
 
-    const div1 = document.createElement('div');
-    div1.innerHTML = `
+    const divFeature = document.createElement('div');
+    divFeature.innerHTML = `
     <h6 class="card-title">Features</h6>
         <ul>
             <li>${details.features[1].feature_name}</li>
@@ -102,21 +104,21 @@ const displayCardDetails = (details) => {
             <p class="m-0"> ${details.features[4] == undefined ? "" : `<li>${details.features[4].feature_name}</li>`}</p>
         </ul>
     `
-    cardInfo.appendChild(div1);
-
-    const div2 = document.createElement('div');
+    modalCard1.appendChild(divFeature);
+    //integration part
+    const divIntegration = document.createElement('div');
     if(details.integrations == null){
-        div2.innerHTML=`
+        divIntegration.innerHTML=`
         <h6 class="card-title">Integrations</h6>
         <ul>
             <li>${details.integrations == null ? "No data Found" : details.integrations[0]}</li>
         </ul>
         `
-        cardInfo.appendChild(div2);
+        modalCard1.appendChild(divIntegration);
     }
       
     else{
-        div2.innerHTML=`
+        divIntegration.innerHTML=`
         <h6 class="card-title">Integrations</h6>
         <ul>
             <li>${details.integrations[0]}</li>
@@ -125,24 +127,24 @@ const displayCardDetails = (details) => {
             <p> ${details.integrations[3] == undefined ? "" : `<li>${details.integrations[3]}</li>`}</p>
         </ul>
         `
-        cardInfo.appendChild(div2);
+        modalCard1.appendChild(divIntegration);
         
     }   
     
-    // Modal 2nd div info
+    // modal 2nd card 
     // Images, question answer part
-    const cardDetails2 = document.getElementById('card-description2');
+    const modalCard2 = document.getElementById('modal-card2');
     if(details.accuracy.score == null){
-        cardDetails2.innerHTML = `
+        modalCard2.innerHTML = `
     <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
         <h5 class="card-title text-center">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
         <p class="card-text text-center">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
     `
     }
     else{
-        cardDetails2.innerHTML = `
+        modalCard2.innerHTML = `
     <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
-        <p id='accuracy' class="bg-danger-subtle text-center rounded-3 position-absolute mt-4 me-4 px-3 top-0 end-0">${details.accuracy.score* 100}% accuracy</p>
+        <p id='accuracy' class="bg-danger-subtle text-center rounded-2 position-absolute mt-4 me-4 px-3 top-0 end-0">${details.accuracy.score* 100}% accuracy</p>
         <h5 class="card-title text-center">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
         <p class="card-text text-center">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
     `
