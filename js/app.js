@@ -1,5 +1,6 @@
 // Show only 6 data at first
 const loadData = () =>{
+    toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
     .then(res => res.json())
