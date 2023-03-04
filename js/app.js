@@ -153,10 +153,8 @@ document.getElementById('sort-btn').addEventListener('click',function(){
     fetch(`https://openapi.programming-hero.com/api/ai/tools`)
     .then(res => res.json())
     .then(data => sortDataShow(data.data.tools))
-})
-
+}); 
 const sortDataShow = elements => {
-    loadData2();
     function byDate(a,b) {
         return new Date(a.published_in).valueOf() - new Date(b.published_in).valueOf();
     }
