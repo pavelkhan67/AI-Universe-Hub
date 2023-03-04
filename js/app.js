@@ -71,12 +71,12 @@ const displayCardDetails = (details) => {
     document.getElementById('card-description').innerText= `${details.description}`
     // price and plan part
     if(details.pricing == null){
-        document.getElementById('plan1').innerText = 'No data found';
-        document.getElementById('plan1-sub').innerText = '';
-        document.getElementById('plan2').innerText = 'No data found';
-        document.getElementById('plan2-sub').innerText = '';
-        document.getElementById('plan3').innerText = 'No data found';
-        document.getElementById('plan3-sub').innerText = '';
+        document.getElementById('plan1').innerText = 'Free of Cost';
+        document.getElementById('plan1-sub').innerText = '/ Free';
+        document.getElementById('plan2').innerText = 'Free of Cost';
+        document.getElementById('plan2-sub').innerText = '/ Pro';
+        document.getElementById('plan3').innerText = 'Free of Cost';
+        document.getElementById('plan3-sub').innerText = '/ Enterprise';
     }
     else{
         document.getElementById('plan1').innerText = `${details.pricing[0].price == false || details.pricing[0].price == 'No cost' ? "Free of Cost /" : details.pricing[0].price }`
@@ -110,9 +110,7 @@ const displayCardDetails = (details) => {
     if(details.integrations == null){
         divIntegration.innerHTML=`
         <h6 class="card-title">Integrations</h6>
-        <ul>
-            <li>${details.integrations == null ? "No data Found" : details.integrations[0]}</li>
-        </ul>
+        <p> No data Found</p>
         `
         modalCard1.appendChild(divIntegration);
     }
@@ -127,8 +125,7 @@ const displayCardDetails = (details) => {
             <p> ${details.integrations[3] == undefined ? "" : `<li>${details.integrations[3]}</li>`}</p>
         </ul>
         `
-        modalCard1.appendChild(divIntegration);
-        
+        modalCard1.appendChild(divIntegration);  
     }   
     
     // modal 2nd card 
@@ -136,14 +133,14 @@ const displayCardDetails = (details) => {
     const modalCard2 = document.getElementById('modal-card2');
     if(details.accuracy.score == null){
         modalCard2.innerHTML = `
-    <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
+        <img class="img-fluid rounded-3 mb-4" src="${details.image_link[0]}" alt="">
         <h5 class="card-title text-center">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
         <p class="card-text text-center">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
     `
     }
     else{
         modalCard2.innerHTML = `
-    <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
+        <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
         <p id='accuracy' class="bg-danger-subtle text-center rounded-2 position-absolute mt-4 me-4 px-3 top-0 end-0">${details.accuracy.score* 100}% accuracy</p>
         <h5 class="card-title text-center">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
         <p class="card-text text-center">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
