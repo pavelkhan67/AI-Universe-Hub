@@ -49,12 +49,10 @@ const displayData = (elements) =>{
                 </div>
             </div>
         </div>
-    </div>
         `
-    cardContainer.appendChild(cardDiv);
+        cardContainer.appendChild(cardDiv);
     })
     toggleSpinner(false);
-    
 };
 
 // Load data dynamically using id 
@@ -92,60 +90,42 @@ const displayCardDetails = (details) => {
     // Features & Integrations part display
     const modalCard1 = document.getElementById('modal-card1');
     modalCard1.innerHTML ="";
-    // console.log(details.features);
-
+    //feature part
     const divFeature = document.createElement('div');
     divFeature.innerHTML = `
-    <h6 class="card-title">Features</h6>
+        <h6 class="card-title">Features</h6>
         <ul>
             <li>${details.features[1].feature_name}</li>
             <li>${details.features[2].feature_name}</li>
             <li>${details.features[3].feature_name}</li>
-            <p class="m-0"> ${details.features[4] == undefined ? "" : `<li>${details.features[4].feature_name}</li>`}</p>
+            ${details.features[4] == undefined ? "" : `<li>${details.features[4].feature_name}</li>`}
         </ul>
-    `
+        `
     modalCard1.appendChild(divFeature);
     //integration part
     const divIntegration = document.createElement('div');
-    if(details.integrations == null){
-        divIntegration.innerHTML=`
-        <h6 class="card-title">Integrations</h6>
-        <p> No data Found</p>
-        `
-        modalCard1.appendChild(divIntegration);
-    }
-      
-    else{
-        divIntegration.innerHTML=`
-        <h6 class="card-title">Integrations</h6>
+    divIntegration.innerHTML=`
+        ${details.integrations == null ? `<h6 class="card-title">Integrations</h6> <p> No data Found</p>`:
+        `<h6 class="card-title">Integrations</h6>
         <ul>
             <li>${details.integrations[0]}</li>
-            <p class="m-0">${details.integrations[1] == undefined ? "" : `<li>${details.integrations[1]}</li>`}</p>
-            <p>${details.integrations[2] == undefined ? "" : `<li>${details.integrations[2]}</li>`}</p>
-            <p> ${details.integrations[3] == undefined ? "" : `<li>${details.integrations[3]}</li>`}</p>
+            ${details.integrations[1] == undefined ? "" : `<li>${details.integrations[1]}</li>`}
+            ${details.integrations[2] == undefined ? "" : `<li>${details.integrations[2]}</li>`}
+            ${details.integrations[3] == undefined ? "" : `<li>${details.integrations[3]}</li>`}
         </ul>
         `
-        modalCard1.appendChild(divIntegration);  
-    }   
+        }
+        `
+    modalCard1.appendChild(divIntegration);
     
     // modal 2nd card 
     // Images, question answer part
     const modalCard2 = document.getElementById('modal-card2');
-    if(details.accuracy.score == null){
-        modalCard2.innerHTML = `
-        <img class="img-fluid rounded-3 mb-4" src="${details.image_link[0]}" alt="">
-        <h5 class="card-title text-center">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
-        <p class="card-text text-center">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
-    `
-    }
-    else{
-        modalCard2.innerHTML = `
-        <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
-        <p id='accuracy' class="bg-danger-subtle text-center rounded-2 position-absolute mt-4 me-4 px-3 top-0 end-0">${details.accuracy.score* 100}% accuracy</p>
-        <h5 class="card-title text-center">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
-        <p class="card-text text-center">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>
-    `
-    }
+    modalCard2.innerHTML = `
+    <img class="img-fluid rounded-3 mb-4 position-relative" src="${details.image_link[0]}" alt="">
+    ${details.accuracy.score == null ? '' :`<p class="bg-danger-subtle text-center rounded-2 position-absolute mt-4 me-4 px-3 top-0 end-0">${details.accuracy.score* 100}% accuracy</p>`}
+    <h5 class="card-title text-center">${details.input_output_examples == null ? "Can you give any example?" : details.input_output_examples[0].input}</h5>
+    <p class="card-text text-center">${details.input_output_examples == null ? "No! Not Yet! Take a break!!!" :details.input_output_examples[0].output}</p>`
 };
 
 // toggler
@@ -173,9 +153,10 @@ document.getElementById('sort-btn').addEventListener('click',function(){
     fetch(`https://openapi.programming-hero.com/api/ai/tools`)
     .then(res => res.json())
     .then(data => sortDataShow(data.data.tools))
-}) 
+})
 
 const sortDataShow = elements => {
+    loadData2();
     function byDate(a,b) {
         return new Date(a.published_in).valueOf() - new Date(b.published_in).valueOf();
     }
